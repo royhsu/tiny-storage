@@ -11,11 +11,13 @@ public protocol Storage {
     
     associatedtype Value
     
-    typealias Change = StorageChange<Key, Value>
+    var changes: Observable< AnyCollection< StorageChange<Key, Value> > > { get }
     
-    typealias Changes = AnyCollection<Change>
-    
-    var changes: Observable<Changes> { get }
+    func load(
+        completion: (
+            ( Result< AnyStorage<Key, Value> > ) -> Void
+        )?
+    )
     
     func value(forKey key: Key) -> Value?
     
@@ -45,11 +47,20 @@ public extension Storage {
         
     }
     
+    public func load() { load(completion: nil) }
+    
 }
 
 public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
     
-    private let _changes: () -> Observable<Changes>
+    private let _changes: () -> Observable< AnyCollection< StorageChange<Key, Value> > >
+    
+    private let _load: (
+        _ completion: (
+            ( Result< AnyStorage<Key, Value> > ) -> Void
+        )?
+    )
+    -> Void
     
     private let _value: (Key) -> Value?
     
@@ -64,7 +75,9 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
         S.Value == Value {
             
         self._changes = { storage.changes }
-        
+            
+        self._load = storage.load
+
         self._value = storage.value
             
         self._setValue = storage.setValue
@@ -73,7 +86,13 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
         
     }
     
-    public var changes: Observable<AnyCollection<StorageChange<Key, Value>>> { return _changes() }
+    public var changes: Observable< AnyCollection< StorageChange<Key, Value> > > { return _changes() }
+    
+    public func load(
+        completion: (
+            ( Result< AnyStorage<Key, Value> > ) -> Void
+        )?
+    ) { _load(completion) }
     
     public func value(forKey key: Key) -> Value? { return _value(key) }
     
@@ -181,21 +200,51 @@ public struct StorageContainer<Key, Value> where Key: Hashable {
     
 }
 
-// MARK: - MemeryCache
+// MARK: - MemoryCache
 
-public final class MemeryCache<Key, Value>: Storage, ExpressibleByDictionaryLiteral where Key: Hashable {
+public final class MemoryCache<Key, Value>: Storage, ExpressibleByDictionaryLiteral where Key: Hashable {
     
+    private enum State {
+        
+        case initial, loaded
+        
+    }
+    
+    private final var state: State = .initial
+
+    public final var isLoaded: Bool { return state == .loaded }
+
     private typealias Base = Dictionary<Key, Value>
     
     private final var _base: Base
     
-    public let changes: Observable<Changes> = Observable()
+    public let changes: Observable< AnyCollection< StorageChange<Key, Value> > > = Observable()
     
     public init() { self._base = [:] }
     
     public init(
         dictionaryLiteral elements: (Key, Value)...
     ) { self._base = Base(uniqueKeysWithValues: elements) }
+    
+    public final func load(
+        completion: (
+            ( Result< AnyStorage<Key, Value> > ) -> Void
+        )?
+    ) {
+        
+        state = .loaded
+        
+        DispatchQueue.global(qos: .background).async {
+            
+            completion?(
+                .success(
+                    AnyStorage(self)
+                )
+            )
+            
+        }
+        
+    }
     
     public final func value(forKey key: Key) -> Value? { return _base[key] }
     
@@ -208,7 +257,7 @@ public final class MemeryCache<Key, Value>: Storage, ExpressibleByDictionaryLite
         
         changes.value = AnyCollection(
             [
-                Change(
+                StorageChange(
                     key: key,
                     value: value
                 )

@@ -19,7 +19,7 @@ internal final class MemoryCacheTests: XCTestCase {
     
     internal final func testInitialize() {
         
-        let cache = MemeryCache<String, String>()
+        let cache = MemoryCache<String, String>()
         
         XCTAssertEqual(
             cache.count,
@@ -30,7 +30,7 @@ internal final class MemoryCacheTests: XCTestCase {
     
     internal final func testExpressibleByDictionaryLiteral() {
         
-        let cache: MemeryCache = [
+        let cache: MemoryCache = [
             "hello": "world"
         ]
         
@@ -46,11 +46,44 @@ internal final class MemoryCacheTests: XCTestCase {
         
     }
     
+    internal final func testLoad() {
+        
+        let promise = expectation(description: "Load the cache.")
+        
+        let cache = MemoryCache<String, String>()
+        
+        XCTAssertFalse(cache.isLoaded)
+        
+        cache.load { result in
+            
+            promise.fulfill()
+            
+            switch result {
+                
+            case .success:
+                
+                XCTAssert(cache.isLoaded)
+                
+                XCTAssert(cache.isEmpty)
+                
+            case let .failure(error): XCTFail("\(error)")
+                
+            }
+            
+        }
+        
+        wait(
+            for: [ promise ],
+            timeout: 10.0
+        )
+        
+    }
+    
     internal final func testSetValue() {
         
         let promise = expectation(description: "Get notified about changes.")
         
-        var cache = MemeryCache<String, String>()
+        var cache = MemoryCache<String, String>()
         
         let subscription = cache.changes.subscribe { event in
             
@@ -97,7 +130,7 @@ internal final class MemoryCacheTests: XCTestCase {
         
         let promise = expectation(description: "Get notified about changes.")
         
-        var cache: MemeryCache = [ "nil": "non-nil value" ]
+        var cache: MemoryCache = [ "nil": "non-nil value" ]
         
         let subscription = cache.changes.subscribe { event in
         
@@ -136,7 +169,7 @@ internal final class MemoryCacheTests: XCTestCase {
     
     internal final func testTypeErasable() {
         
-        let cache = MemeryCache<String, String>()
+        let cache = MemoryCache<String, String>()
         
         _ = AnyStorage(cache)
         

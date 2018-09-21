@@ -20,7 +20,7 @@ internal final class StorageContainerTests: XCTestCase {
         
         let promise = expectation(description: "Get notified about changes.")
         
-        let cache: MemeryCache = [ "nil": "non-nil value" ]
+        let cache: MemoryCache = [ "nil": "non-nil value" ]
         
         var container = StorageContainer(storage: cache)
         
