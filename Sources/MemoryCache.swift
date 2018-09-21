@@ -9,86 +9,6 @@
 
 import TinyCore
 
-//public struct StorageContainer<Key, Value> where Key: Hashable {
-//
-//    public struct Change: Hashable {
-//
-//        public let key: Key
-//
-//        public let value: Value?
-//
-//        public init(
-//            key: Key,
-//            value: Value?
-//        ) {
-//
-//            self.key = key
-//
-//            self.value = value
-//
-//        }
-//
-//        public static func == (
-//            lhs: StorageContainer.Change,
-//            rhs: StorageContainer.Change
-//        )
-//        -> Bool { return lhs.key == rhs.key }
-//
-//        public func hash(into hasher: inout Hasher) { hasher.combine(key.hashValue) }
-//
-//    }
-//
-//    public typealias Changes = Set<Change>
-//
-//    public var storage: AnyStorage<Key, Value> {
-//
-//        didSet(oldStorage) {
-//
-////            let oldSet = Set(
-////                oldStorage.lazy.elements.map(Change.init)
-////            )
-////
-////            let newSet = Set(
-////                storage.lazy.elements.map(Change.init)
-////            )
-////
-////            let diff = newSet.subtracting(newSet)
-////
-////            print("diff", diff)
-//
-////            let s = AnySequence(oldStorage.lazy.elements)
-////
-////            Set<<#Element: Hashable#>>(s)
-//
-////           oldStorage.lazy.
-//
-////            changes.value = [
-////                Change(
-////                    key: key,
-////                    value: value
-////                )
-////            ]
-//
-//        }
-//
-//    }
-//
-//    public let changes: Observable<Changes>
-//
-//    public init<S>(storage: S)
-//    where
-//        S: Storage,
-//        S.Key == Key,
-//        S.Value == Value {
-//
-//        self.storage = AnyStorage(storage)
-//
-//        self.changes = Observable<Changes>()
-//
-//    }
-//
-//}
-
 public final class MemoryCache<Key, Value>: Storage, ExpressibleByDictionaryLiteral where Key: Hashable {
     
     private enum State {
@@ -154,8 +74,7 @@ public final class MemoryCache<Key, Value>: Storage, ExpressibleByDictionaryLite
     }
     
     public final var count: Int { return _base.count }
-    
-    #warning("Test: lazy collection.")
+
     public final var lazy: LazyCollection< [Key : Value] > { return _base.lazy }
     
 }

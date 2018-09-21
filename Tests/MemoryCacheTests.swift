@@ -167,6 +167,19 @@ internal final class MemoryCacheTests: XCTestCase {
         
     }
     
+    internal final func testLazyCollection() {
+        
+        let cache: MemoryCache = [
+            "hello": "world"
+        ]
+        
+        XCTAssertEqual(
+            cache.lazy.elements,
+            [ "hello": "world" ]
+        )
+        
+    }
+    
     internal final func testTypeErasable() {
         
         let cache = MemoryCache<String, String>()
