@@ -34,6 +34,8 @@ public protocol Storage {
     
     var count: Int { get }
     
+    var lazy: LazyCollection< [Key: Value] > { get }
+    
 }
 
 public extension Storage {
@@ -80,6 +82,8 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
     
     private let _count: () -> Int
     
+    private let _lazy: () -> LazyCollection< [Key: Value] >
+    
     public init<S>(_ storage: S)
     where
         S: Storage,
@@ -97,6 +101,8 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
         self._setValue = storage.setValue
         
         self._count = { storage.count }
+            
+        self._lazy = { storage.lazy }
             
     }
     
@@ -125,5 +131,7 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
     }
     
     public var count: Int { return _count() }
+    
+    public var lazy: LazyCollection<[Key : Value]> { return _lazy() }
     
 }

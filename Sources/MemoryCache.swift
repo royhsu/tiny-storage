@@ -155,4 +155,7 @@ public final class MemoryCache<Key, Value>: Storage, ExpressibleByDictionaryLite
     
     public final var count: Int { return _base.count }
     
+    #warning("Test: lazy collection.")
+    public final var lazy: LazyCollection< [Key : Value] > { return _base.lazy }
+    
 }
