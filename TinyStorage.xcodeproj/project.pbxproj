@@ -15,8 +15,8 @@
 		B00B9F022155252A006CAD5A /* XCTUnwrapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00B9EFC2155251B006CAD5A /* XCTUnwrapped.swift */; };
 		B00B9F032155252A006CAD5A /* XCTSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00B9EFD2155251B006CAD5A /* XCTSuccess.swift */; };
 		B00B9F042155252A006CAD5A /* Bundle+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00B9EFE2155251B006CAD5A /* Bundle+Testing.swift */; };
-		B011A0A721552ADD008B4468 /* StorageContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B011A0A521552AD9008B4468 /* StorageContainerTests.swift */; };
 		B011A0A921553E7E008B4468 /* StorageChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = B011A0A821553E7E008B4468 /* StorageChange.swift */; };
+		B011A0AB21554A8A008B4468 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B011A0AA21554A8A008B4468 /* Storage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +41,8 @@
 		B00B9EFC2155251B006CAD5A /* XCTUnwrapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTUnwrapped.swift; sourceTree = "<group>"; };
 		B00B9EFD2155251B006CAD5A /* XCTSuccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTSuccess.swift; sourceTree = "<group>"; };
 		B00B9EFE2155251B006CAD5A /* Bundle+Testing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Testing.swift"; sourceTree = "<group>"; };
-		B011A0A521552AD9008B4468 /* StorageContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageContainerTests.swift; sourceTree = "<group>"; };
 		B011A0A821553E7E008B4468 /* StorageChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageChange.swift; sourceTree = "<group>"; };
+		B011A0AA21554A8A008B4468 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +90,7 @@
 				B00B9EE6215517C9006CAD5A /* iOS */,
 				B00B9EF921551BF7006CAD5A /* MemoryCache.swift */,
 				B011A0A821553E7E008B4468 /* StorageChange.swift */,
+				B011A0AA21554A8A008B4468 /* Storage.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -108,7 +109,6 @@
 			children = (
 				B00B9EFB2155251B006CAD5A /* Helpers */,
 				B00B9EED21551822006CAD5A /* MemoryCacheTests.swift */,
-				B011A0A521552AD9008B4468 /* StorageContainerTests.swift */,
 				B00B9EEF21551822006CAD5A /* Info.plist */,
 			);
 			path = Tests;
@@ -242,6 +242,7 @@
 			files = (
 				B00B9EFA21551BF7006CAD5A /* MemoryCache.swift in Sources */,
 				B011A0A921553E7E008B4468 /* StorageChange.swift in Sources */,
+				B011A0AB21554A8A008B4468 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,7 +251,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B00B9F032155252A006CAD5A /* XCTSuccess.swift in Sources */,
-				B011A0A721552ADD008B4468 /* StorageContainerTests.swift in Sources */,
 				B00B9F022155252A006CAD5A /* XCTUnwrapped.swift in Sources */,
 				B00B9F042155252A006CAD5A /* Bundle+Testing.swift in Sources */,
 				B00B9EEE21551822006CAD5A /* MemoryCacheTests.swift in Sources */,
