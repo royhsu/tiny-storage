@@ -11,6 +11,12 @@ public protocol Storage {
     
     associatedtype Value
     
+    typealias Change = StorageChange<Key, Value>
+    
+    typealias Changes = AnyCollection<Change>
+    
+    var changes: Observable<Changes> { get }
+    
     func value(forKey key: Key) -> Value?
     
     func setValue(
@@ -19,6 +25,7 @@ public protocol Storage {
     )
     
     var count: Int { get }
+    
 }
 
 public extension Storage {
@@ -42,6 +49,8 @@ public extension Storage {
 
 public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
     
+    private let _changes: () -> Observable<Changes>
+    
     private let _value: (Key) -> Value?
     
     private let _setValue: (Value?, Key) -> Void
@@ -53,6 +62,8 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
         S: Storage,
         S.Key == Key,
         S.Value == Value {
+            
+        self._changes = { storage.changes }
         
         self._value = storage.value
             
@@ -61,6 +72,8 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
         self._count = { storage.count }
         
     }
+    
+    public var changes: Observable<AnyCollection<StorageChange<Key, Value>>> { return _changes() }
     
     public func value(forKey key: Key) -> Value? { return _value(key) }
     
@@ -175,10 +188,6 @@ public final class MemeryCache<Key, Value>: Storage, ExpressibleByDictionaryLite
     private typealias Base = Dictionary<Key, Value>
     
     private final var _base: Base
-    
-    public typealias Change = StorageChange<Key, Value>
-    
-    public typealias Changes = AnyCollection<Change>
     
     public let changes: Observable<Changes> = Observable()
     
