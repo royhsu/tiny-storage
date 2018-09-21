@@ -105,7 +105,7 @@ public final class MemoryCache<Key, Value>: Storage, ExpressibleByDictionaryLite
     
     private final var _base: Base
     
-    public let changes: Observable< AnyCollection< StorageChange<Key, Value> > > = Observable()
+    public final let changes: Observable< AnyCollection< StorageChange<Key, Value> > > = Observable()
     
     public init() { self._base = [:] }
     

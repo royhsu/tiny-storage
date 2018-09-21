@@ -88,9 +88,9 @@
 			isa = PBXGroup;
 			children = (
 				B00B9EE6215517C9006CAD5A /* iOS */,
-				B00B9EF921551BF7006CAD5A /* MemoryCache.swift */,
-				B011A0A821553E7E008B4468 /* StorageChange.swift */,
 				B011A0AA21554A8A008B4468 /* Storage.swift */,
+				B011A0A821553E7E008B4468 /* StorageChange.swift */,
+				B00B9EF921551BF7006CAD5A /* MemoryCache.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -348,7 +348,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Sources/iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -425,7 +424,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Sources/iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

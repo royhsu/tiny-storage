@@ -17,6 +17,8 @@ public protocol Storage {
     
     var changes: Observable< AnyCollection< StorageChange<Key, Value> > > { get }
     
+    var isLoaded: Bool { get }
+    
     func load(
         completion: (
             ( Result< AnyStorage<Key, Value> > ) -> Void
@@ -63,6 +65,8 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
     
     private let _changes: () -> Observable< AnyCollection< StorageChange<Key, Value> > >
     
+    private let _isLoaded: () -> Bool
+    
     private let _load: (
         _ completion: (
             ( Result< AnyStorage<Key, Value> > ) -> Void
@@ -83,6 +87,8 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
         S.Value == Value {
             
         self._changes = { storage.changes }
+            
+        self._isLoaded = { storage.isLoaded }
         
         self._load = storage.load
         
@@ -95,6 +101,8 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
     }
     
     public var changes: Observable< AnyCollection< StorageChange<Key, Value> > > { return _changes() }
+    
+    public var isLoaded: Bool { return _isLoaded() }
     
     public func load(
         completion: (
