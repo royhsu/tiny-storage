@@ -8,9 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		B00B9EE221551792006CAD5A /* TinyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = B00B9EE021551792006CAD5A /* TinyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B00B9EEE21551822006CAD5A /* TinyStorage_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00B9EED21551822006CAD5A /* TinyStorage_Tests.swift */; };
+		B00B9EEE21551822006CAD5A /* MemoryCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00B9EED21551822006CAD5A /* MemoryCacheTests.swift */; };
 		B00B9EF021551822006CAD5A /* TinyStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B00B9EDD21551792006CAD5A /* TinyStorage.framework */; };
 		B00B9EF821551A66006CAD5A /* TinyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B00B9EF721551A66006CAD5A /* TinyCore.framework */; };
+		B00B9EFA21551BF7006CAD5A /* MemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00B9EF921551BF7006CAD5A /* MemoryCache.swift */; };
+		B00B9F022155252A006CAD5A /* XCTUnwrapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00B9EFC2155251B006CAD5A /* XCTUnwrapped.swift */; };
+		B00B9F032155252A006CAD5A /* XCTSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00B9EFD2155251B006CAD5A /* XCTSuccess.swift */; };
+		B00B9F042155252A006CAD5A /* Bundle+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00B9EFE2155251B006CAD5A /* Bundle+Testing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,9 +32,13 @@
 		B00B9EE021551792006CAD5A /* TinyStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TinyStorage.h; sourceTree = "<group>"; };
 		B00B9EE121551792006CAD5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B00B9EEB21551822006CAD5A /* TinyStorage Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TinyStorage Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B00B9EED21551822006CAD5A /* TinyStorage_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyStorage_Tests.swift; sourceTree = "<group>"; };
+		B00B9EED21551822006CAD5A /* MemoryCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCacheTests.swift; sourceTree = "<group>"; };
 		B00B9EEF21551822006CAD5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B00B9EF721551A66006CAD5A /* TinyCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TinyCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B00B9EF921551BF7006CAD5A /* MemoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCache.swift; sourceTree = "<group>"; };
+		B00B9EFC2155251B006CAD5A /* XCTUnwrapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTUnwrapped.swift; sourceTree = "<group>"; };
+		B00B9EFD2155251B006CAD5A /* XCTSuccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTSuccess.swift; sourceTree = "<group>"; };
+		B00B9EFE2155251B006CAD5A /* Bundle+Testing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Testing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				B00B9EE6215517C9006CAD5A /* iOS */,
+				B00B9EF921551BF7006CAD5A /* MemoryCache.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -92,7 +101,8 @@
 		B00B9EEC21551822006CAD5A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				B00B9EED21551822006CAD5A /* TinyStorage_Tests.swift */,
+				B00B9EFB2155251B006CAD5A /* Helpers */,
+				B00B9EED21551822006CAD5A /* MemoryCacheTests.swift */,
 				B00B9EEF21551822006CAD5A /* Info.plist */,
 			);
 			path = Tests;
@@ -104,6 +114,16 @@
 				B00B9EF721551A66006CAD5A /* TinyCore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B00B9EFB2155251B006CAD5A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B00B9EFC2155251B006CAD5A /* XCTUnwrapped.swift */,
+				B00B9EFD2155251B006CAD5A /* XCTSuccess.swift */,
+				B00B9EFE2155251B006CAD5A /* Bundle+Testing.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +187,7 @@
 				TargetAttributes = {
 					B00B9EDC21551792006CAD5A = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 					B00B9EEA21551822006CAD5A = {
 						CreatedOnToolsVersion = 10.0;
@@ -213,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B00B9EFA21551BF7006CAD5A /* MemoryCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +242,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B00B9EEE21551822006CAD5A /* TinyStorage_Tests.swift in Sources */,
+				B00B9F032155252A006CAD5A /* XCTSuccess.swift in Sources */,
+				B00B9F022155252A006CAD5A /* XCTUnwrapped.swift in Sources */,
+				B00B9F042155252A006CAD5A /* Bundle+Testing.swift in Sources */,
+				B00B9EEE21551822006CAD5A /* MemoryCacheTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +443,7 @@
 		B00B9EF421551822006CAD5A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -492,6 +518,7 @@
 		B00B9EF521551822006CAD5A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
