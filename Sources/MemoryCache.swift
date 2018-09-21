@@ -19,7 +19,6 @@ public protocol Storage {
     )
     
     var count: Int { get }
-    
 }
 
 public extension Storage {
@@ -87,13 +86,85 @@ public extension Storage {
     
 }
 
+import TinyCore
+
 public struct StorageContainer<Key, Value> where Key: Hashable {
     
-    public typealias Storage = AnyStorage<Key, Value>
+    public struct Change: Hashable {
+        
+        public let key: Key
+        
+        public let value: Value?
+        
+        public init(
+            key: Key,
+            value: Value?
+        ) {
+            
+            self.key = key
+            
+            self.value = value
+            
+        }
+        
+        public static func == (
+            lhs: StorageContainer.Change,
+            rhs: StorageContainer.Change
+        )
+        -> Bool { return lhs.key == rhs.key }
+        
+        public func hash(into hasher: inout Hasher) { hasher.combine(key.hashValue) }
+        
+    }
     
-    private var storage: Storage
+    public typealias Changes = Set<Change>
     
-    public init(storage: Storage) { self.storage = storage }
+    public var storage: AnyStorage<Key, Value> {
+        
+        didSet(oldStorage) {
+
+//            let oldSet = Set(
+//                oldStorage.lazy.elements.map(Change.init)
+//            )
+//
+//            let newSet = Set(
+//                storage.lazy.elements.map(Change.init)
+//            )
+//
+//            let diff = newSet.subtracting(newSet)
+//
+//            print("diff", diff)
+            
+//            let s = AnySequence(oldStorage.lazy.elements)
+//
+//            Set<<#Element: Hashable#>>(s)
+            
+//           oldStorage.lazy.
+            
+//            changes.value = [
+//                Change(
+//                    key: key,
+//                    value: value
+//                )
+//            ]
+            
+        }
+        
+    }
+    
+    public let changes: Observable<Changes>
+    
+    public init<S>(storage: S)
+    where
+        S: Storage,
+        S.Key == Key,
+        S.Value == Value {
+            
+        self.storage = AnyStorage(storage)
+            
+        self.changes = Observable<Changes>()
+            
+    }
     
 }
 
@@ -104,6 +175,12 @@ public final class MemeryCache<Key, Value>: Storage, ExpressibleByDictionaryLite
     private typealias Base = Dictionary<Key, Value>
     
     private final var _base: Base
+    
+    public typealias Change = StorageChange<Key, Value>
+    
+    public typealias Changes = AnyCollection<Change>
+    
+    public let changes: Observable<Changes> = Observable()
     
     public init() { self._base = [:] }
     
@@ -116,7 +193,20 @@ public final class MemeryCache<Key, Value>: Storage, ExpressibleByDictionaryLite
     public final func setValue(
         _ value: Value?,
         forKey key: Key
-    ) { _base[key] = value }
+    ) {
+        
+        _base[key] = value
+        
+        changes.value = AnyCollection(
+            [
+                Change(
+                    key: key,
+                    value: value
+                )
+            ]
+        )
+        
+    }
     
     public final var count: Int { return _base.count }
     
