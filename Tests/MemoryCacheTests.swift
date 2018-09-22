@@ -85,7 +85,7 @@ internal final class MemoryCacheTests: XCTestCase {
         
         var cache = MemoryCache<String, String>()
         
-        observation = cache.changes.observe { change in
+        observation = cache.observe { change in
             
             promise.fulfill()
             
@@ -133,7 +133,7 @@ internal final class MemoryCacheTests: XCTestCase {
             "replacing": "current value"
         ]
         
-        observation = cache.changes.observe { change in
+        observation = cache.observe { change in
             
             promise.fulfill()
             
@@ -219,7 +219,7 @@ internal final class MemoryCacheTests: XCTestCase {
         
         var cache: MemoryCache = [ "nil": "non-nil value" ]
         
-        observation = cache.changes.observe { change in
+        observation = cache.observe { change in
         
             promise.fulfill()
         
@@ -260,7 +260,7 @@ internal final class MemoryCacheTests: XCTestCase {
             "removing": "value"
         ]
         
-        observation = cache.changes.observe { change in
+        observation = cache.observe { change in
                 
             promise.fulfill()
             

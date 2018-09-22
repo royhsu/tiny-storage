@@ -26,7 +26,7 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
     
     private final var state: State = .initial
     
-    public final var changes: Observable< AnyCollection< StorageChange<Item.Identifier, Item> > > = Observable()
+    private final var changes: Observable< AnyCollection< StorageChange<Item.Identifier, Item> > > = Observable()
     
     public init<R>(resource: R)
     where
@@ -125,5 +125,10 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
         return AnyCollection(elements)
         
     }
+    
+    public final func observe(
+        _ observer: @escaping (_ change: ObservedChange< AnyCollection< StorageChange<Item.Identifier, Item> > >) -> Void
+    )
+    -> Observation { return changes.observe(observer) }
     
 }

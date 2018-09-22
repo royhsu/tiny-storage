@@ -15,8 +15,6 @@ public protocol Storage {
     
     associatedtype Value
     
-    var changes: Observable< AnyCollection< StorageChange<Key, Value> > > { get }
-    
     var isLoaded: Bool { get }
     
     func load(
@@ -37,6 +35,11 @@ public protocol Storage {
     var count: Int { get }
     
     var elements: AnyCollection< (key: Key, value: Value) > { get }
+    
+    func observe(
+        _ observer: @escaping (_ change: ObservedChange< AnyCollection< StorageChange<Key, Value> > >) -> Void
+    )
+    -> Observation
     
 }
 
@@ -67,8 +70,6 @@ public extension Storage {
 
 public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
     
-    private let _changes: () -> Observable< AnyCollection< StorageChange<Key, Value> > >
-    
     private let _isLoaded: () -> Bool
     
     private let _load: (
@@ -88,13 +89,16 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
     
     private let _elements: () -> AnyCollection< (key: Key, value: Value) >
     
+    private let _observe: (
+        _ observer: @escaping (_ change: ObservedChange< AnyCollection< StorageChange<Key, Value> > >) -> Void
+    )
+    -> Observation
+    
     public init<S>(_ storage: S)
     where
         S: Storage,
         S.Key == Key,
         S.Value == Value {
-            
-        self._changes = { storage.changes }
             
         self._isLoaded = { storage.isLoaded }
         
@@ -110,9 +114,9 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
             
         self._elements = { storage.elements }
             
+        self._observe = storage.observe
+            
     }
-    
-    public var changes: Observable< AnyCollection< StorageChange<Key, Value> > > { return _changes() }
     
     public var isLoaded: Bool { return _isLoaded() }
     
@@ -141,5 +145,10 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
     public var count: Int { return _count() }
     
     public var elements: AnyCollection< (key: Key, value: Value) > { return _elements() }
+    
+    public func observe(
+        _ observer: @escaping (_ change: ObservedChange< AnyCollection< StorageChange<Key, Value> > >) -> Void
+    )
+    -> Observation { return _observe(observer) }
     
 }
