@@ -3,7 +3,7 @@ import TinyStorage
 
 internal struct Message: Unique {
     
-    internal var identifier: AnyHashable
+    internal var identifier: String
     
     internal init(identifier: String) { self.identifier = identifier }
     

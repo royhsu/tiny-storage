@@ -12,7 +12,9 @@ import TinyCore
 #warning("TODO: move to TinyCore")
 public protocol Unique {
     
-    var identifier: AnyHashable { get }
+    associatedtype Identifier: Hashable
+    
+    var identifier: Identifier { get }
     
 }
 
@@ -114,7 +116,7 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
     
     private final var state: State = .initial
     
-    public final let changes: Observable< AnyCollection< StorageChange<AnyHashable, Item> > > = Observable()
+    public final let changes: Observable< AnyCollection< StorageChange<Item.Identifier, Item> > > = Observable()
     
     public init<R>(resource: R)
     where
@@ -126,7 +128,7 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
     #warning("TODO: should keep tracking the previous fetched pages.")
     public final func load(
         completion: (
-            (Result< AnyStorage<AnyHashable, Item> >) -> Void
+            (Result< AnyStorage<Item.Identifier, Item> >) -> Void
         )?
     ) {
         
@@ -177,11 +179,11 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
         
     }
     
-    public final func value(forKey key: AnyHashable) -> Item? { return _base.first { $0.identifier == key } }
+    public final func value(forKey key: Item.Identifier) -> Item? { return _base.first { $0.identifier == key } }
     
     public final func setValue(
         _ value: Item?,
-        forKey key: AnyHashable
+        forKey key: Item.Identifier
     ) {
         
         guard
@@ -200,14 +202,14 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
     
     #warning("TODO: not implemented.")
     public final func merge(
-        _ other: AnySequence< (key: AnyHashable, value: Item? )>
+        _ other: AnySequence< (key: Item.Identifier, value: Item? )>
     ) { fatalError("Not implemented.")  }
     
     public final func removeAll() { _base.removeAll() }
     
     public final var count: Int { return _base.count }
     
-    public var elements: AnyCollection< (key: AnyHashable, value: Item) > {
+    public var elements: AnyCollection< (key: Item.Identifier, value: Item) > {
         
         let elements = _base.map { ($0.identifier, $0) }
         
