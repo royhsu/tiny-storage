@@ -32,6 +32,12 @@ public protocol Storage {
         forKey key: Key
     )
     
+    func merge(
+        _ other: AnySequence< (key: Key, value: Value?) >
+    )
+    
+    func removeAll()
+    
     var count: Int { get }
     
     var lazy: LazyCollection< [Key: Value] > { get }
@@ -80,6 +86,13 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
     
     private let _setValue: (Value?, Key) -> Void
     
+    private let _merge: (
+        AnySequence< (key: Key, value: Value?) >
+    )
+    -> Void
+    
+    private let _removeAll: () -> Void
+    
     private let _count: () -> Int
     
     private let _lazy: () -> LazyCollection< [Key: Value] >
@@ -99,6 +112,10 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
         self._value = storage.value
         
         self._setValue = storage.setValue
+            
+        self._merge = storage.merge
+            
+        self._removeAll = storage.removeAll
         
         self._count = { storage.count }
             
@@ -129,6 +146,12 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
         )
         
     }
+    
+    public func merge(
+        _ other: AnySequence<(key: Key, value: Value?)>
+    ) { _merge(other) }
+    
+    public func removeAll() { _removeAll() }
     
     public var count: Int { return _count() }
     

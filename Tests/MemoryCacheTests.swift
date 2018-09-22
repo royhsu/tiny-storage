@@ -126,6 +126,97 @@ internal final class MemoryCacheTests: XCTestCase {
         
     }
     
+    internal final func testMergeValues() {
+        
+        let promise = expectation(description: "Get notified about changes.")
+        
+        var cache: MemoryCache = [
+            "existing": "value",
+            "replacing": "current value"
+        ]
+        
+        let subscription = cache.changes.subscribe { event in
+            
+            promise.fulfill()
+            
+            let changes = event.currentValue
+            
+            XCTAssertEqual(
+                changes?.count,
+                2
+            )
+            
+            let existingKeyChange = changes?.first { $0.key == "existing" }
+            
+            XCTAssert(existingKeyChange == nil)
+            
+            let newKeyChange = changes?.first { $0.key == "new" }
+            
+            XCTAssert(newKeyChange != nil)
+            
+            XCTAssertEqual(
+                newKeyChange?.value,
+                "value"
+            )
+            
+            let replacingKeyChange = changes?.first { $0.key == "replacing" }
+            
+            XCTAssert(replacingKeyChange != nil)
+            
+            XCTAssertEqual(
+                replacingKeyChange?.value,
+                "by value"
+            )
+            
+            let nilKeyChange = changes?.first { $0.key == "nil" }
+            
+            XCTAssert(nilKeyChange == nil)
+            
+        }
+        
+        subscriptions.append(subscription)
+        
+        let newElements: [ (String, String?) ] =  [
+            ("new", "value"),
+            ("replacing", "by value"),
+            ("nil", nil)
+        ]
+        
+        cache.merge(
+            AnySequence(newElements)
+        )
+        
+        XCTAssertEqual(
+            cache["new"],
+            "value"
+        )
+        
+        XCTAssertEqual(
+            cache["existing"],
+            "value"
+        )
+        
+        XCTAssertEqual(
+            cache["replacing"],
+            "by value"
+        )
+        
+        XCTAssert(
+            cache["nil"] == nil
+        )
+        
+        XCTAssertEqual(
+            cache.count,
+            3
+        )
+        
+        wait(
+            for: [ promise ],
+            timeout: 10.0
+        )
+        
+    }
+    
     internal final func testRemoveValue() {
         
         let promise = expectation(description: "Get notified about changes.")
@@ -159,6 +250,44 @@ internal final class MemoryCacheTests: XCTestCase {
         cache["nil"] = nil
         
         XCTAssert(cache.isEmpty)
+        
+        wait(
+            for: [ promise ],
+            timeout: 10.0
+        )
+        
+    }
+    
+    internal final func testRemoveAllValues() {
+        
+        let promise = expectation(description: "Remove all values.")
+        
+        let cache: MemoryCache = [
+            "removing": "value"
+        ]
+        
+        let subscription = cache.changes.subscribe { event in
+                
+            promise.fulfill()
+            
+            XCTAssert(cache.isEmpty)
+            
+            let changes = event.currentValue
+            
+            let removeKeyChange = changes?.first { $0.key == "removing" }
+            
+            XCTAssert(removeKeyChange != nil)
+            
+            XCTAssertEqual(
+                removeKeyChange?.value,
+                "value"
+            )
+            
+        }
+        
+        subscriptions.append(subscription)
+        
+        cache.removeAll()
         
         wait(
             for: [ promise ],

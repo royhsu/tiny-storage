@@ -207,6 +207,12 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
         
     }
     
+    public final func merge(
+        _ other: AnySequence< (key: Item.Identifier, value: Item? )>
+    ) { _base.merge(other) }
+    
+    public final func removeAll() { _base.removeAll() }
+    
     public final var count: Int { return _base.count }
     
     public var lazy: LazyCollection< [Item.Identifier: Item ] > { return _base.lazy }

@@ -40,15 +40,13 @@ internal final class RemoteStorageTests: XCTestCase {
                 
             case let .success(storage):
                 
-                XCTFail()
-                
-//                XCTAssertEqual(
-//                    storage.lazy.elements,
-//                    [
-//                        "1": Message(identifier: "1"),
-//                        "2": Message(identifier: "2")
-//                    ]
-//                )
+                XCTAssertEqual(
+                    storage.lazy.elements,
+                    [
+                        "1": Message(identifier: "1"),
+                        "2": Message(identifier: "2")
+                    ]
+                )
                 
             case let .failure(error): XCTFail("\(error)")
                 

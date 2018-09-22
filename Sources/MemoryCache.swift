@@ -53,8 +53,10 @@ public final class MemoryCache<Key, Value>: Storage, ExpressibleByDictionaryLite
         
     }
     
+    #warning("should prevent accessing before loaded.")
     public final func value(forKey key: Key) -> Value? { return _base[key] }
     
+    #warning("should prevent accessing before loaded.")
     public final func setValue(
         _ value: Value?,
         forKey key: Key
@@ -70,6 +72,71 @@ public final class MemoryCache<Key, Value>: Storage, ExpressibleByDictionaryLite
                 )
             ]
         )
+        
+    }
+    
+    #warning("should prevent accessing before loaded.")
+    public final func merge(
+        _ other: AnySequence< (key: Key, value: Value?) >
+    ) {
+        
+        var mergingElements: [ (Key, Value) ] = []
+        
+        var removingKeys: [Key] = []
+        
+        var updatingElements: [ (key: Key, value: Value) ] = []
+        
+        for element in other {
+            
+            let key = element.key
+            
+            if let newValue = element.value {
+                
+                mergingElements.append(
+                    (key, newValue)
+                )
+                
+                updatingElements.append(
+                    (key, newValue)
+                )
+                
+            }
+            else {
+                
+                if let existingValue = self[key] {
+                    
+                    updatingElements.append(
+                        (key, existingValue)
+                    )
+                    
+                }
+                else { removingKeys.append(key) }
+                
+            }
+            
+        }
+        
+        removingKeys.forEach { self._base.removeValue(forKey: $0) }
+        
+        _base.merge(
+            mergingElements,
+            uniquingKeysWith: { _, new in new }
+        )
+        
+        let updatingChanges = updatingElements.map(StorageChange.init)
+        
+        changes.value = AnyCollection(updatingChanges)
+        
+    }
+    
+    public final func removeAll() {
+        
+        let deletingChanges =
+            _base.map(StorageChange.init)
+        
+        _base.removeAll()
+        
+        changes.value = AnyCollection(deletingChanges)
         
     }
     
