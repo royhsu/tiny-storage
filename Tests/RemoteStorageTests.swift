@@ -11,6 +11,7 @@ import XCTest
 
 @testable import TinyStorage
 
+#warning("FIXME: *** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Parameter \"test\" must not be nil.'")
 internal final class RemoteStorageTests: XCTestCase {
     
     internal final func testLoad() {

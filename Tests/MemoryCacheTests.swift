@@ -15,7 +15,7 @@ import XCTest
 
 internal final class MemoryCacheTests: XCTestCase {
     
-    internal final var subscriptions: [ObservableSubscription] = []
+    internal final var observation: Observation?
     
     internal final func testInitialize() {
         
@@ -85,11 +85,11 @@ internal final class MemoryCacheTests: XCTestCase {
         
         var cache = MemoryCache<String, String>()
         
-        let subscription = cache.changes.subscribe { event in
+        observation = cache.changes.observe { change in
             
             promise.fulfill()
             
-            let changes = event.currentValue
+            let changes = change.currentValue
             
             XCTAssertEqual(
                 changes?.count,
@@ -104,8 +104,6 @@ internal final class MemoryCacheTests: XCTestCase {
             )
             
         }
-        
-        subscriptions.append(subscription)
         
         cache["hello"] = "world"
         
@@ -135,11 +133,11 @@ internal final class MemoryCacheTests: XCTestCase {
             "replacing": "current value"
         ]
         
-        let subscription = cache.changes.subscribe { event in
+        observation = cache.changes.observe { change in
             
             promise.fulfill()
             
-            let changes = event.currentValue
+            let changes = change.currentValue
             
             XCTAssertEqual(
                 changes?.count,
@@ -173,8 +171,6 @@ internal final class MemoryCacheTests: XCTestCase {
             XCTAssert(nilKeyChange == nil)
             
         }
-        
-        subscriptions.append(subscription)
         
         let newElements: [ (String, String?) ] =  [
             ("new", "value"),
@@ -223,11 +219,11 @@ internal final class MemoryCacheTests: XCTestCase {
         
         var cache: MemoryCache = [ "nil": "non-nil value" ]
         
-        let subscription = cache.changes.subscribe { event in
+        observation = cache.changes.observe { change in
         
             promise.fulfill()
         
-            let changes = event.currentValue
+            let changes = change.currentValue
         
             XCTAssertEqual(
                 changes?.count,
@@ -244,8 +240,6 @@ internal final class MemoryCacheTests: XCTestCase {
             )
         
         }
-        
-        subscriptions.append(subscription)
         
         cache["nil"] = nil
         
@@ -266,13 +260,13 @@ internal final class MemoryCacheTests: XCTestCase {
             "removing": "value"
         ]
         
-        let subscription = cache.changes.subscribe { event in
+        observation = cache.changes.observe { change in
                 
             promise.fulfill()
             
             XCTAssert(cache.isEmpty)
             
-            let changes = event.currentValue
+            let changes = change.currentValue
             
             let removeKeyChange = changes?.first { $0.key == "removing" }
             
@@ -284,8 +278,6 @@ internal final class MemoryCacheTests: XCTestCase {
             )
             
         }
-        
-        subscriptions.append(subscription)
         
         cache.removeAll()
         

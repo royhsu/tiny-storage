@@ -26,7 +26,7 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
     
     private final var state: State = .initial
     
-    public final let changes: Observable< AnyCollection< StorageChange<Item.Identifier, Item> > > = Observable()
+    public final var changes: Observable< AnyCollection< StorageChange<Item.Identifier, Item> > > = Observable()
     
     public init<R>(resource: R)
     where
