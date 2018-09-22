@@ -296,15 +296,19 @@ internal final class MemoryCacheTests: XCTestCase {
         
     }
     
-    internal final func testLazyCollection() {
+    internal final func testElements() {
         
         let cache: MemoryCache = [
             "hello": "world"
         ]
         
         XCTAssertEqual(
-            cache.lazy.elements,
-            [ "hello": "world" ]
+            cache.elements.count,
+            1
+        )
+        
+        XCTAssert(
+            cache.elements.contains { $0.key == "hello" && $0.value == "world" }
         )
         
     }

@@ -103,6 +103,8 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
     
     private final var _base = MemoryCache<Item.Identifier, Item>()
     
+    private final var sortedKeys: [AnyHashable] = []
+    
     private final let resource: AnyResource<Item>
     
     private enum State {
@@ -122,6 +124,7 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
     
     public final var isLoaded: Bool { return (state == .loaded) }
     
+    #warning("TODO: should keep tracking the previous fetched pages.")
     public final func load(
         completion: (
             (Result< AnyStorage<Item.Identifier, Item> >) -> Void
@@ -156,14 +159,17 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
                         
                     case let .success(payload):
                         
-        //                let sequence: [ (key: Key, value: Item?) ] = payload
-        //                    .items
-        //                    .enumerated()
-        //                    .map { $0 }
+                        let newKeys = payload.items.map { $0.identifier }
                         
-                        #warning("TODO: should keep tracking the previous fetched pages.")
+                        self.sortedKeys.append(newKeys)
                         
-//                        self._base.merge
+                        let sequence: [ (key: Item.Identifier, value: Item?) ] = payload
+                            .items
+                            .map { ($0.identifier, $0) }
+                        
+                        self._base.merge(
+                            AnySequence(sequence)
+                        )
                         
                         completion?(
                             .success(
@@ -211,10 +217,33 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
         _ other: AnySequence< (key: Item.Identifier, value: Item? )>
     ) { _base.merge(other) }
     
-    public final func removeAll() { _base.removeAll() }
+    public final func removeAll() {
+        
+        sortedKeys.removeAll()
+        
+        _base.removeAll()
+        
+    }
     
     public final var count: Int { return _base.count }
     
-    public var lazy: LazyCollection< [Item.Identifier: Item ] > { return _base.lazy }
+    public var elements: AnyCollection< (key: Item.Identifier, value: Item) > {
+        
+        let sorted = _base
+            .elements
+            .sorted { previous, next in
+        
+                guard
+                    let preivousIndex = self.sortedKeys.index(of: previous.key),
+                    let nextIndex = self.sortedKeys.index(of: next.key)
+                else { return false }
+                
+                return preivousIndex < nextIndex
+                
+            }
+        
+        return AnyCollection(sorted)
+        
+    }
     
 }

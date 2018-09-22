@@ -142,6 +142,12 @@ public final class MemoryCache<Key, Value>: Storage, ExpressibleByDictionaryLite
     
     public final var count: Int { return _base.count }
 
-    public final var lazy: LazyCollection< [Key : Value] > { return _base.lazy }
+    public final var elements: AnyCollection< (key: Key, value: Value) > {
+        
+        let elements = _base.lazy.elements.map { $0 }
+        
+        return AnyCollection(elements)
+        
+    }
     
 }
