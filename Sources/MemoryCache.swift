@@ -9,6 +9,7 @@
 
 import TinyCore
 
+#warning("TODO: should prevent mutating / accessing before loaded.")
 public final class MemoryCache<Key, Value>: Storage, ExpressibleByDictionaryLiteral where Key: Hashable {
     
     private enum State {
@@ -53,10 +54,8 @@ public final class MemoryCache<Key, Value>: Storage, ExpressibleByDictionaryLite
         
     }
     
-    #warning("should prevent accessing before loaded.")
     public final func value(forKey key: Key) -> Value? { return _base[key] }
     
-    #warning("should prevent accessing before loaded.")
     public final func setValue(
         _ value: Value?,
         forKey key: Key
@@ -75,7 +74,6 @@ public final class MemoryCache<Key, Value>: Storage, ExpressibleByDictionaryLite
         
     }
     
-    #warning("should prevent accessing before loaded.")
     public final func merge(
         _ other: AnySequence< (key: Key, value: Value?) >
     ) {

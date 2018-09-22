@@ -38,7 +38,7 @@ internal final class RemoteStorageTests: XCTestCase {
             
             switch result {
                 
-            case let .success(storage):
+            case .success:
                 
                 #warning("FIXME: can't figure out why this callback is not called.")
                 

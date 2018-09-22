@@ -139,7 +139,7 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
     public func setValue(
         _ value: Value?,
         forKey key: Key
-        ) {
+    ) {
         
         _setValue(
             value,

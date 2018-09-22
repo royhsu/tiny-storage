@@ -7,12 +7,13 @@
 
 // MARK: - Message
 
+import TinyCore
 import TinyStorage
 
 internal struct Message: Unique {
     
-    internal var identifier: AnyHashable
+    internal var identifier: String
     
-    internal init(identifier: AnyHashable) { self.identifier = identifier }
+    internal init(identifier: String) { self.identifier = identifier }
     
 }

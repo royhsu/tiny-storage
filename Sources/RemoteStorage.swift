@@ -5,18 +5,9 @@
 //  Created by Roy Hsu on 2018/9/22.
 //
 
+// MARK: - RemoteStorage
+
 import TinyCore
-
-// MARK: - Unique
-
-#warning("TODO: move to TinyCore")
-public protocol Unique {
-    
-    associatedtype Identifier: Hashable
-    
-    var identifier: Identifier { get }
-    
-}
 
 public protocol Resource {
     
@@ -69,7 +60,6 @@ public struct AnyResource<Item>: Resource where Item: Unique {
     
 }
 
-
 public enum Page {
     
     case first
@@ -102,6 +92,8 @@ public struct FetchItemsPayload<Item> where Item: Unique {
 // MARK: - RemoteStorage
 
 #warning("TODO: missing test.")
+#warning("TODO: should prevent mutating / accessing before loaded.")
+#warning("TODO: should keep tracking the previous fetched pages.")
 public final class RemoteStorage<Item>: Storage where Item: Unique {
     
     private final var _base: [Item] = []
@@ -125,7 +117,6 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
     
     public final var isLoaded: Bool { return (state == .loaded) }
     
-    #warning("TODO: should keep tracking the previous fetched pages.")
     public final func load(
         completion: (
             (Result< AnyStorage<Item.Identifier, Item> >) -> Void
