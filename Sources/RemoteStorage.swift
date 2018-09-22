@@ -10,11 +10,9 @@ import TinyCore
 // MARK: - Unique
 
 #warning("TODO: move to TinyCore")
-public protocol Unique: Equatable {
+public protocol Unique {
     
-    associatedtype Identifier: Hashable
-    
-    var identifier: Identifier { get }
+    var identifier: AnyHashable { get }
     
 }
 
@@ -80,7 +78,7 @@ public enum Page {
     
 }
 
-public struct FetchItemsPayload<Item> {
+public struct FetchItemsPayload<Item> where Item: Unique {
     
     public let items: [Item]
     
@@ -99,11 +97,12 @@ public struct FetchItemsPayload<Item> {
     
 }
 
+// MARK: - RemoteStorage
+
+#warning("TODO: missing test.")
 public final class RemoteStorage<Item>: Storage where Item: Unique {
     
-    private final var _base = MemoryCache<Item.Identifier, Item>()
-    
-    private final var sortedKeys: [AnyHashable] = []
+    private final var _base: [Item] = []
     
     private final let resource: AnyResource<Item>
     
@@ -115,7 +114,7 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
     
     private final var state: State = .initial
     
-    public final var changes: Observable< AnyCollection< StorageChange<Item.Identifier, Item> > > { return _base.changes }
+    public final let changes: Observable< AnyCollection< StorageChange<AnyHashable, Item> > > = Observable()
     
     public init<R>(resource: R)
     where
@@ -127,21 +126,15 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
     #warning("TODO: should keep tracking the previous fetched pages.")
     public final func load(
         completion: (
-            (Result< AnyStorage<Item.Identifier, Item> >) -> Void
+            (Result< AnyStorage<AnyHashable, Item> >) -> Void
         )?
     ) {
         
-        if state == .loading {
-            
-            _base.load(completion: completion)
-            
-            return
-            
-        }
+        if state == .loading { return }
         
         state = .loading
         
-        _base.load { [weak self] result in
+        resource.fetchItems(page: .first) { [weak self] result in
             
             defer { self?.state = .loaded }
             
@@ -151,41 +144,26 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
             
             switch result {
                 
-            case .success:
-            
-                self.resource.fetchItems(page: .first) { result in
+            case let .success(payload):
                 
-                    switch result {
-                        
-                    case let .success(payload):
-                        
-                        let newKeys = payload.items.map { $0.identifier }
-                        
-                        self.sortedKeys.append(newKeys)
-                        
-                        let sequence: [ (key: Item.Identifier, value: Item?) ] = payload
-                            .items
-                            .map { ($0.identifier, $0) }
-                        
-                        self._base.merge(
-                            AnySequence(sequence)
-                        )
-                        
-                        completion?(
-                            .success(
-                                AnyStorage(self)
-                            )
-                        )
-                        
-                    case let .failure(error):
-                        
-                        completion?(
-                            .failure(error)
-                        )
-                        
-                    }
+                self._base.append(contentsOf: payload.items)
+                
+                let changes = payload.items.map { item in
+                    
+                    return StorageChange(
+                        key: item.identifier,
+                        value: item
+                    )
                     
                 }
+                
+                self.changes.value = AnyCollection(changes)
+                
+                completion?(
+                    .success(
+                        AnyStorage(self)
+                    )
+                )
                 
             case let .failure(error):
                 
@@ -194,55 +172,46 @@ public final class RemoteStorage<Item>: Storage where Item: Unique {
                 )
                 
             }
-            
+        
         }
         
     }
     
-    public final func value(forKey key: Item.Identifier) -> Item? { return _base[key] }
+    public final func value(forKey key: AnyHashable) -> Item? { return _base.first { $0.identifier == key } }
     
     public final func setValue(
         _ value: Item?,
-        forKey key: Item.Identifier
+        forKey key: AnyHashable
     ) {
         
-        _base.setValue(
-            value,
-            forKey: key
-        )
+        guard
+            let value = value
+        else { fatalError("Setting the nil value is not allowed.") }
+        
+        guard
+            let index = _base.index(
+                where: { $0.identifier == key }
+            )
+        else { fatalError("The key is out of bounds.") }
+        
+        _base[index] = value
         
     }
     
+    #warning("TODO: not implemented.")
     public final func merge(
-        _ other: AnySequence< (key: Item.Identifier, value: Item? )>
-    ) { _base.merge(other) }
+        _ other: AnySequence< (key: AnyHashable, value: Item? )>
+    ) { fatalError("Not implemented.")  }
     
-    public final func removeAll() {
-        
-        sortedKeys.removeAll()
-        
-        _base.removeAll()
-        
-    }
+    public final func removeAll() { _base.removeAll() }
     
     public final var count: Int { return _base.count }
     
-    public var elements: AnyCollection< (key: Item.Identifier, value: Item) > {
+    public var elements: AnyCollection< (key: AnyHashable, value: Item) > {
         
-        let sorted = _base
-            .elements
-            .sorted { previous, next in
+        let elements = _base.map { ($0.identifier, $0) }
         
-                guard
-                    let preivousIndex = self.sortedKeys.index(of: previous.key),
-                    let nextIndex = self.sortedKeys.index(of: next.key)
-                else { return false }
-                
-                return preivousIndex < nextIndex
-                
-            }
-        
-        return AnyCollection(sorted)
+        return AnyCollection(elements)
         
     }
     

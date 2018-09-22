@@ -32,6 +32,7 @@ public protocol Storage {
         forKey key: Key
     )
     
+    #warning("Seems like not every storage is going to support merging operation. It maybe a good idea to create another MergableStorage protocol for this.")
     func merge(
         _ other: AnySequence< (key: Key, value: Value?) >
     )

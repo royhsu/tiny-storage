@@ -40,7 +40,9 @@ internal final class RemoteStorageTests: XCTestCase {
                 
             case let .success(storage):
                 
-                #warning("FIXME: assertion.")
+                #warning("FIXME: can't figure out why this callback is not called.")
+                
+                XCTFail()
 //                XCTAssertEqual(
 //                    storage.elements,
 //                    [
