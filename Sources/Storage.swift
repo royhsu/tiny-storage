@@ -32,11 +32,6 @@ public protocol Storage {
         forKey key: Key
     )
     
-    #warning("Seems like not every storage is going to support merging operation. It maybe a good idea to create another MergableStorage protocol for this.")
-    func merge(
-        _ other: AnySequence< (key: Key, value: Value?) >
-    )
-    
     func removeAll()
     
     var count: Int { get }
@@ -87,11 +82,6 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
     
     private let _setValue: (Value?, Key) -> Void
     
-    private let _merge: (
-        AnySequence< (key: Key, value: Value?) >
-    )
-    -> Void
-    
     private let _removeAll: () -> Void
     
     private let _count: () -> Int
@@ -113,8 +103,6 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
         self._value = storage.value
         
         self._setValue = storage.setValue
-            
-        self._merge = storage.merge
             
         self._removeAll = storage.removeAll
         
@@ -147,10 +135,6 @@ public struct AnyStorage<Key, Value>: Storage where Key: Hashable {
         )
         
     }
-    
-    public func merge(
-        _ other: AnySequence<(key: Key, value: Value?)>
-    ) { _merge(other) }
     
     public func removeAll() { _removeAll() }
     

@@ -19,6 +19,9 @@
 		B011A0AB21554A8A008B4468 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B011A0AA21554A8A008B4468 /* Storage.swift */; };
 		B07825EE215569D900F7CD56 /* MessageResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07825EB2155698E00F7CD56 /* MessageResource.swift */; };
 		B07825EF21556AB600F7CD56 /* RemoteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07825E6215568DA00F7CD56 /* RemoteStorage.swift */; };
+		B0A26ECB2155EA2B00747535 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A26ECA2155EA2B00747535 /* Page.swift */; };
+		B0A26ECD2155EA4400747535 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A26ECC2155EA4400747535 /* Resource.swift */; };
+		B0A26ECF2155EAB000747535 /* FetchItemsPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A26ECE2155EAB000747535 /* FetchItemsPayload.swift */; };
 		B0E8CF7F21556F050083F0DB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07825F021556E3D00F7CD56 /* Message.swift */; };
 		B0E8CF80215573130083F0DB /* RemoteStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07825E8215568EF00F7CD56 /* RemoteStorageTests.swift */; };
 /* End PBXBuildFile section */
@@ -51,6 +54,9 @@
 		B07825E8215568EF00F7CD56 /* RemoteStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteStorageTests.swift; sourceTree = "<group>"; };
 		B07825EB2155698E00F7CD56 /* MessageResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageResource.swift; sourceTree = "<group>"; };
 		B07825F021556E3D00F7CD56 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		B0A26ECA2155EA2B00747535 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		B0A26ECC2155EA4400747535 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		B0A26ECE2155EAB000747535 /* FetchItemsPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchItemsPayload.swift; sourceTree = "<group>"; };
 		B0E8CF812155D67E0083F0DB /* TinyStorage.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TinyStorage.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
@@ -96,12 +102,15 @@
 		B00B9EDF21551792006CAD5A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				B0E8CF812155D67E0083F0DB /* TinyStorage.playground */,
 				B00B9EE6215517C9006CAD5A /* iOS */,
 				B011A0AA21554A8A008B4468 /* Storage.swift */,
 				B011A0A821553E7E008B4468 /* StorageChange.swift */,
 				B00B9EF921551BF7006CAD5A /* MemoryCache.swift */,
 				B07825E6215568DA00F7CD56 /* RemoteStorage.swift */,
+				B0A26ECC2155EA4400747535 /* Resource.swift */,
+				B0A26ECA2155EA2B00747535 /* Page.swift */,
+				B0A26ECE2155EAB000747535 /* FetchItemsPayload.swift */,
+				B0E8CF812155D67E0083F0DB /* TinyStorage.playground */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -257,7 +266,10 @@
 				B00B9EFA21551BF7006CAD5A /* MemoryCache.swift in Sources */,
 				B011A0A921553E7E008B4468 /* StorageChange.swift in Sources */,
 				B011A0AB21554A8A008B4468 /* Storage.swift in Sources */,
+				B0A26ECD2155EA4400747535 /* Resource.swift in Sources */,
+				B0A26ECF2155EAB000747535 /* FetchItemsPayload.swift in Sources */,
 				B07825EF21556AB600F7CD56 /* RemoteStorage.swift in Sources */,
+				B0A26ECB2155EA2B00747535 /* Page.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
