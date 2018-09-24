@@ -1,6 +1,6 @@
 //
 //  MessageResource.swift
-//  TinyStorage Tests
+//  TinyStorageTests
 //
 //  Created by Roy Hsu on 2018/9/13.
 //  Copyright © 2018 TinyWorld. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  RemoteStorageTests.swift
-//  TinyStorage Tests
+//  TinyStorageTests
 //
 //  Created by Roy Hsu on 2018/9/22.
 //

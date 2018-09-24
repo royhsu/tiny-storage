@@ -7,8 +7,8 @@
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
+            buildForTesting = "NO"
+            buildForRunning = "YES"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
             buildForAnalyzing = "NO">
@@ -47,8 +47,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B00B9EEA21551822006CAD5A"
-               BuildableName = "TinyStorage Tests.xctest"
-               BlueprintName = "TinyStorage iOS Tests"
+               BuildableName = "TinyStorageTests.xctest"
+               BlueprintName = "TinyStorageTests iOS"
                ReferencedContainer = "container:TinyStorage.xcodeproj">
             </BuildableReference>
          </TestableReference>

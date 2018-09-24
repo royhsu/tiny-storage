@@ -10,11 +10,7 @@
 		B00B9EE221551792006CAD5A /* TinyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = B00B9EE021551792006CAD5A /* TinyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B00B9EEE21551822006CAD5A /* MemoryCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00B9EED21551822006CAD5A /* MemoryCacheTests.swift */; };
 		B00B9EF021551822006CAD5A /* TinyStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B00B9EDD21551792006CAD5A /* TinyStorage.framework */; };
-		B00B9EF821551A66006CAD5A /* TinyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B00B9EF721551A66006CAD5A /* TinyCore.framework */; };
 		B00B9EFA21551BF7006CAD5A /* MemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00B9EF921551BF7006CAD5A /* MemoryCache.swift */; };
-		B00B9F022155252A006CAD5A /* XCTUnwrapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00B9EFC2155251B006CAD5A /* XCTUnwrapped.swift */; };
-		B00B9F032155252A006CAD5A /* XCTSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00B9EFD2155251B006CAD5A /* XCTSuccess.swift */; };
-		B00B9F042155252A006CAD5A /* Bundle+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00B9EFE2155251B006CAD5A /* Bundle+Testing.swift */; };
 		B011A0A921553E7E008B4468 /* StorageChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = B011A0A821553E7E008B4468 /* StorageChange.swift */; };
 		B011A0AB21554A8A008B4468 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B011A0AA21554A8A008B4468 /* Storage.swift */; };
 		B07825EE215569D900F7CD56 /* MessageResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07825EB2155698E00F7CD56 /* MessageResource.swift */; };
@@ -24,6 +20,10 @@
 		B0A26ECF2155EAB000747535 /* FetchItemsPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A26ECE2155EAB000747535 /* FetchItemsPayload.swift */; };
 		B0E8CF7F21556F050083F0DB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07825F021556E3D00F7CD56 /* Message.swift */; };
 		B0E8CF80215573130083F0DB /* RemoteStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07825E8215568EF00F7CD56 /* RemoteStorageTests.swift */; };
+		B0F51C9D215868D100B592F5 /* TinyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F51C9C215868D100B592F5 /* TinyCore.framework */; };
+		B0F51CA321586C4200B592F5 /* XCTUnwrapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F51CA021586C4200B592F5 /* XCTUnwrapped.swift */; };
+		B0F51CA421586C4200B592F5 /* XCTSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F51CA121586C4200B592F5 /* XCTSuccess.swift */; };
+		B0F51CA521586C4200B592F5 /* Bundle+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F51CA221586C4200B592F5 /* Bundle+Testing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,14 +40,10 @@
 		B00B9EDD21551792006CAD5A /* TinyStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TinyStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00B9EE021551792006CAD5A /* TinyStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TinyStorage.h; sourceTree = "<group>"; };
 		B00B9EE121551792006CAD5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B00B9EEB21551822006CAD5A /* TinyStorage Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TinyStorage Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B00B9EEB21551822006CAD5A /* TinyStorageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyStorageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00B9EED21551822006CAD5A /* MemoryCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCacheTests.swift; sourceTree = "<group>"; };
 		B00B9EEF21551822006CAD5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B00B9EF721551A66006CAD5A /* TinyCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TinyCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00B9EF921551BF7006CAD5A /* MemoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCache.swift; sourceTree = "<group>"; };
-		B00B9EFC2155251B006CAD5A /* XCTUnwrapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTUnwrapped.swift; sourceTree = "<group>"; };
-		B00B9EFD2155251B006CAD5A /* XCTSuccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTSuccess.swift; sourceTree = "<group>"; };
-		B00B9EFE2155251B006CAD5A /* Bundle+Testing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Testing.swift"; sourceTree = "<group>"; };
 		B011A0A821553E7E008B4468 /* StorageChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageChange.swift; sourceTree = "<group>"; };
 		B011A0AA21554A8A008B4468 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		B07825E6215568DA00F7CD56 /* RemoteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteStorage.swift; sourceTree = "<group>"; };
@@ -58,6 +54,10 @@
 		B0A26ECC2155EA4400747535 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		B0A26ECE2155EAB000747535 /* FetchItemsPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchItemsPayload.swift; sourceTree = "<group>"; };
 		B0E8CF812155D67E0083F0DB /* TinyStorage.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TinyStorage.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		B0F51C9C215868D100B592F5 /* TinyCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TinyCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0F51CA021586C4200B592F5 /* XCTUnwrapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTUnwrapped.swift; sourceTree = "<group>"; };
+		B0F51CA121586C4200B592F5 /* XCTSuccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTSuccess.swift; sourceTree = "<group>"; };
+		B0F51CA221586C4200B592F5 /* Bundle+Testing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Testing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B00B9EF821551A66006CAD5A /* TinyCore.framework in Frameworks */,
+				B0F51C9D215868D100B592F5 /* TinyCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				B00B9EDD21551792006CAD5A /* TinyStorage.framework */,
-				B00B9EEB21551822006CAD5A /* TinyStorage Tests.xctest */,
+				B00B9EEB21551822006CAD5A /* TinyStorageTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,7 +127,7 @@
 		B00B9EEC21551822006CAD5A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				B00B9EFB2155251B006CAD5A /* Helpers */,
+				B0F51C9F21586C4200B592F5 /* Helpers */,
 				B00B9EED21551822006CAD5A /* MemoryCacheTests.swift */,
 				B07825E8215568EF00F7CD56 /* RemoteStorageTests.swift */,
 				B07825EB2155698E00F7CD56 /* MessageResource.swift */,
@@ -140,17 +140,17 @@
 		B00B9EF621551A66006CAD5A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B00B9EF721551A66006CAD5A /* TinyCore.framework */,
+				B0F51C9C215868D100B592F5 /* TinyCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B00B9EFB2155251B006CAD5A /* Helpers */ = {
+		B0F51C9F21586C4200B592F5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				B00B9EFC2155251B006CAD5A /* XCTUnwrapped.swift */,
-				B00B9EFD2155251B006CAD5A /* XCTSuccess.swift */,
-				B00B9EFE2155251B006CAD5A /* Bundle+Testing.swift */,
+				B0F51CA021586C4200B592F5 /* XCTUnwrapped.swift */,
+				B0F51CA121586C4200B592F5 /* XCTSuccess.swift */,
+				B0F51CA221586C4200B592F5 /* Bundle+Testing.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -187,9 +187,9 @@
 			productReference = B00B9EDD21551792006CAD5A /* TinyStorage.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B00B9EEA21551822006CAD5A /* TinyStorage iOS Tests */ = {
+		B00B9EEA21551822006CAD5A /* TinyStorageTests iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B00B9EF321551822006CAD5A /* Build configuration list for PBXNativeTarget "TinyStorage iOS Tests" */;
+			buildConfigurationList = B00B9EF321551822006CAD5A /* Build configuration list for PBXNativeTarget "TinyStorageTests iOS" */;
 			buildPhases = (
 				B00B9EE721551822006CAD5A /* Sources */,
 				B00B9EE821551822006CAD5A /* Frameworks */,
@@ -200,9 +200,9 @@
 			dependencies = (
 				B00B9EF221551822006CAD5A /* PBXTargetDependency */,
 			);
-			name = "TinyStorage iOS Tests";
+			name = "TinyStorageTests iOS";
 			productName = "TinyStorage Tests";
-			productReference = B00B9EEB21551822006CAD5A /* TinyStorage Tests.xctest */;
+			productReference = B00B9EEB21551822006CAD5A /* TinyStorageTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -236,7 +236,7 @@
 			projectRoot = "";
 			targets = (
 				B00B9EDC21551792006CAD5A /* TinyStorage iOS */,
-				B00B9EEA21551822006CAD5A /* TinyStorage iOS Tests */,
+				B00B9EEA21551822006CAD5A /* TinyStorageTests iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -277,12 +277,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B00B9F032155252A006CAD5A /* XCTSuccess.swift in Sources */,
 				B07825EE215569D900F7CD56 /* MessageResource.swift in Sources */,
-				B00B9F022155252A006CAD5A /* XCTUnwrapped.swift in Sources */,
-				B00B9F042155252A006CAD5A /* Bundle+Testing.swift in Sources */,
 				B00B9EEE21551822006CAD5A /* MemoryCacheTests.swift in Sources */,
 				B0E8CF7F21556F050083F0DB /* Message.swift in Sources */,
+				B0F51CA421586C4200B592F5 /* XCTSuccess.swift in Sources */,
+				B0F51CA521586C4200B592F5 /* Bundle+Testing.swift in Sources */,
+				B0F51CA321586C4200B592F5 /* XCTUnwrapped.swift in Sources */,
 				B0E8CF80215573130083F0DB /* RemoteStorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,9 +592,9 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)-Tests";
-				PRODUCT_MODULE_NAME = "$(inherited)_Tests";
-				PRODUCT_NAME = "$(inherited) Tests";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)Tests";
+				PRODUCT_MODULE_NAME = "$(inherited)Tests";
+				PRODUCT_NAME = "$(inherited)Tests";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -660,9 +660,9 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)-Tests";
-				PRODUCT_MODULE_NAME = "$(inherited)_Tests";
-				PRODUCT_NAME = "$(inherited) Tests";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)Tests";
+				PRODUCT_MODULE_NAME = "$(inherited)Tests";
+				PRODUCT_NAME = "$(inherited)Tests";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -693,7 +693,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B00B9EF321551822006CAD5A /* Build configuration list for PBXNativeTarget "TinyStorage iOS Tests" */ = {
+		B00B9EF321551822006CAD5A /* Build configuration list for PBXNativeTarget "TinyStorageTests iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B00B9EF421551822006CAD5A /* Debug */,
