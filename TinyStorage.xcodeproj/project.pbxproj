@@ -23,7 +23,6 @@
 		B0F51C9D215868D100B592F5 /* TinyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F51C9C215868D100B592F5 /* TinyCore.framework */; };
 		B0F51CA321586C4200B592F5 /* XCTUnwrapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F51CA021586C4200B592F5 /* XCTUnwrapped.swift */; };
 		B0F51CA421586C4200B592F5 /* XCTSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F51CA121586C4200B592F5 /* XCTSuccess.swift */; };
-		B0F51CA521586C4200B592F5 /* Bundle+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F51CA221586C4200B592F5 /* Bundle+Testing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +56,6 @@
 		B0F51C9C215868D100B592F5 /* TinyCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TinyCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0F51CA021586C4200B592F5 /* XCTUnwrapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTUnwrapped.swift; sourceTree = "<group>"; };
 		B0F51CA121586C4200B592F5 /* XCTSuccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTSuccess.swift; sourceTree = "<group>"; };
-		B0F51CA221586C4200B592F5 /* Bundle+Testing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Testing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +148,6 @@
 			children = (
 				B0F51CA021586C4200B592F5 /* XCTUnwrapped.swift */,
 				B0F51CA121586C4200B592F5 /* XCTSuccess.swift */,
-				B0F51CA221586C4200B592F5 /* Bundle+Testing.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -281,7 +278,6 @@
 				B00B9EEE21551822006CAD5A /* MemoryCacheTests.swift in Sources */,
 				B0E8CF7F21556F050083F0DB /* Message.swift in Sources */,
 				B0F51CA421586C4200B592F5 /* XCTSuccess.swift in Sources */,
-				B0F51CA521586C4200B592F5 /* Bundle+Testing.swift in Sources */,
 				B0F51CA321586C4200B592F5 /* XCTUnwrapped.swift in Sources */,
 				B0E8CF80215573130083F0DB /* RemoteStorageTests.swift in Sources */,
 			);
