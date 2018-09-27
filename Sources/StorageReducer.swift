@@ -1,6 +1,6 @@
 //
 //  StorageReducer.swift
-//  TinyKit
+//  TinyStorage
 //
 //  Created by Roy Hsu on 2018/9/26.
 //  Copyright © 2018 TinyWorld. All rights reserved.
@@ -8,24 +8,20 @@
 
 // MARK: - StorageReducer
 
-import TinyCore
-import TinyStorage
-
-#warning("TODO: should move into TinyStorage.")
 public final class StorageReducer<T, U> where T: Storage {
     
     public final let storage: T
     
-    private final let reduction: (T) -> U
+    private final let tranform: (T) -> U
     
     public init(
         storage: T,
-        reduction: @escaping (T) -> U
+        tranform: @escaping (T) -> U
     ) {
         
         self.storage = storage
         
-        self.reduction = reduction
+        self.tranform = tranform
             
     }
     
@@ -42,7 +38,7 @@ public final class StorageReducer<T, U> where T: Storage {
                     let self = self
                 else { return }
                 
-                let value = self.reduction(self.storage)
+                let value = self.tranform(self.storage)
                 
                 completion(
                     .success(value)
@@ -66,7 +62,7 @@ public final class StorageReducer<T, U> where T: Storage {
                    
                 case .success:
                     
-                    let value = self.reduction(self.storage)
+                    let value = self.tranform(self.storage)
                     
                     completion(
                         .success(value)

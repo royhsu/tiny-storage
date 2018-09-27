@@ -7,8 +7,6 @@
 
 // MARK: - MemoryCache
 
-import TinyCore
-
 #warning("TODO: should prevent mutating / accessing before loaded.")
 #warning("TODO: It seems like not every storage is going to support merging operation. It maybe a good idea to create another MergableStorage protocol for this.")
 public final class MemoryCache<Key, Value>: Storage, ExpressibleByDictionaryLiteral where Key: Hashable {

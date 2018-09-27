@@ -7,10 +7,9 @@
 
 // MARK: - Message
 
-import TinyCore
 import TinyStorage
 
-internal struct Message: Unique {
+internal struct Message: Unique, Equatable {
     
     internal var identifier: String
     

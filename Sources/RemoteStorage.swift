@@ -7,9 +7,6 @@
 
 // MARK: - RemoteStorage
 
-import TinyCore
-
-#warning("TODO: missing test.")
 #warning("TODO: should prevent mutating / accessing before loaded.")
 #warning("TODO: should keep tracking the previous fetched pages.")
 public final class RemoteStorage<Item>: Storage where Item: Unique {

@@ -1,6 +1,6 @@
 //
 //  StorageReducerTests.swift
-//  TinyKitTest
+//  TinyStorageTests
 //
 //  Created by Roy Hsu on 2018/9/26.
 //  Copyright © 2018 TinyWorld. All rights reserved.
@@ -8,10 +8,9 @@
 
 // MARK: - StorageReducerTests
 
-import TinyStorage
 import XCTest
 
-@testable import TinyKit
+@testable import TinyStorage
 
 internal final class StorageReducerTests: XCTestCase {
     
@@ -26,7 +25,7 @@ internal final class StorageReducerTests: XCTestCase {
         
         let reducer = StorageReducer(
             storage: cache,
-            reduction: { storage in
+            tranform: { storage in
                 
                 return Set(
                     storage.elements.map { $0.value }

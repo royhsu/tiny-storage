@@ -8,7 +8,6 @@
 
 // MARK: - MessageResource
 
-import TinyCore
 import TinyStorage
 
 internal struct MessageResource: Resource {

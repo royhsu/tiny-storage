@@ -11,7 +11,6 @@ import XCTest
 
 @testable import TinyStorage
 
-#warning("FIXME: *** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Parameter \"test\" must not be nil.'")
 internal final class RemoteStorageTests: XCTestCase {
     
     internal final func testLoad() {
@@ -35,22 +34,26 @@ internal final class RemoteStorageTests: XCTestCase {
         
         storage.load { result in
             
-            promise.fulfill()
+            defer { promise.fulfill() }
             
             switch result {
                 
             case .success:
                 
-                #warning("FIXME: can't figure out why this callback is not called.")
+                XCTAssertEqual(
+                    storage.count,
+                    2
+                )
                 
-                XCTFail()
-//                XCTAssertEqual(
-//                    storage.elements,
-//                    [
-//                        "1": Message(identifier: "1"),
-//                        "2": Message(identifier: "2")
-//                    ]
-//                )
+                XCTAssertEqual(
+                    storage.value(forKey: "1"),
+                    Message(identifier: "1")
+                )
+
+                XCTAssertEqual(
+                    storage.value(forKey: "2"),
+                    Message(identifier: "2")
+                )
                 
             case let .failure(error): XCTFail("\(error)")
                 

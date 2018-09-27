@@ -8,7 +8,6 @@
 
 // MARK: - AnyStorageTests
 
-import TinyCore
 import XCTest
 
 @testable import TinyStorage
