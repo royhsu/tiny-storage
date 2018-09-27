@@ -11,9 +11,9 @@
 import TinyStorage
 
 internal struct MessageResource: Resource {
-    
+
     internal var fetchItemsResult: Result< FetchItemsPayload<Message> >
-    
+
     internal func fetchItems(
         page: Page,
         completion: @escaping (
@@ -21,13 +21,13 @@ internal struct MessageResource: Resource {
         )
         -> Void
     ) {
-        
+
         DispatchQueue.global(qos: .background).async {
-            
+
             completion(self.fetchItemsResult)
-        
+
         }
-        
+
     }
-    
+
 }

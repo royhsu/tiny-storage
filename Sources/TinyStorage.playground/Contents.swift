@@ -1,17 +1,17 @@
 import TinyStorage
 
 internal struct Message: Unique {
-    
+
     internal var identifier: String
-    
+
     internal init(identifier: String) { self.identifier = identifier }
-    
+
 }
 
 internal struct MessageResource: Resource {
-    
+
     internal var fetchItemsResult: Result< FetchItemsPayload<Message> >
-    
+
     internal func fetchItems(
         page: Page,
         completion: @escaping (
@@ -19,15 +19,15 @@ internal struct MessageResource: Resource {
         )
         -> Void
     ) {
-        
+
         DispatchQueue.global(qos: .background).async {
-            
+
             completion(self.fetchItemsResult)
-            
+
         }
-        
+
     }
-    
+
 }
 
 let remoteStorage = RemoteStorage(
@@ -48,18 +48,18 @@ let remoteStorage = RemoteStorage(
 )
 
 remoteStorage.load { result in
-    
+
     do {
-        
+
         let storage = try result.resolve()
-        
+
         let elements = storage.elements.map { $0.key }
-        
+
         print(elements)
-        
+
     }
     catch { print("\(error)") }
-    
+
 }
 
 print("End")

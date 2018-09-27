@@ -8,11 +8,11 @@
 // MARK: - Page
 
 public enum Page {
-    
+
     case first
-    
+
     case next
-    
+
     case last
-    
+
 }

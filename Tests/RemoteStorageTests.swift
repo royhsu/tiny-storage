@@ -12,11 +12,11 @@ import XCTest
 @testable import TinyStorage
 
 internal final class RemoteStorageTests: XCTestCase {
-    
+
     internal final func testLoad() {
-        
+
         let promise = expectation(description: "Load the storage.")
-        
+
         let storage = RemoteStorage(
             resource: MessageResource(
                 fetchItemsResult: .success(
@@ -29,22 +29,22 @@ internal final class RemoteStorageTests: XCTestCase {
                 )
             )
         )
-        
+
         XCTAssertFalse(storage.isLoaded)
-        
+
         storage.load { result in
-            
+
             defer { promise.fulfill() }
-            
+
             switch result {
-                
+
             case .success:
-                
+
                 XCTAssertEqual(
                     storage.count,
                     2
                 )
-                
+
                 XCTAssertEqual(
                     storage.value(forKey: "1"),
                     Message(identifier: "1")
@@ -54,18 +54,18 @@ internal final class RemoteStorageTests: XCTestCase {
                     storage.value(forKey: "2"),
                     Message(identifier: "2")
                 )
-                
+
             case let .failure(error): XCTFail("\(error)")
-                
+
             }
-            
+
         }
-        
+
         wait(
             for: [ promise ],
             timeout: 10.0
         )
-        
+
     }
-    
+
 }

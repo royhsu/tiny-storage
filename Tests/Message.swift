@@ -10,9 +10,9 @@
 import TinyStorage
 
 internal struct Message: Unique, Equatable {
-    
+
     internal var identifier: String
-    
+
     internal init(identifier: String) { self.identifier = identifier }
-    
+
 }
