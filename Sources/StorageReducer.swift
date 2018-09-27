@@ -12,16 +12,16 @@ public final class StorageReducer<T, U> where T: Storage {
     
     public final let storage: T
     
-    private final let tranform: (T) -> U
+    private final let transform: (T) -> U
     
     public init(
         storage: T,
-        tranform: @escaping (T) -> U
+        transform: @escaping (T) -> U
     ) {
         
         self.storage = storage
         
-        self.tranform = tranform
+        self.transform = transform
             
     }
     
@@ -38,7 +38,7 @@ public final class StorageReducer<T, U> where T: Storage {
                     let self = self
                 else { return }
                 
-                let value = self.tranform(self.storage)
+                let value = self.transform(self.storage)
                 
                 completion(
                     .success(value)
@@ -62,7 +62,7 @@ public final class StorageReducer<T, U> where T: Storage {
                    
                 case .success:
                     
-                    let value = self.tranform(self.storage)
+                    let value = self.transform(self.storage)
                     
                     completion(
                         .success(value)

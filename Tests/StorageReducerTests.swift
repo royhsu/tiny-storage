@@ -25,7 +25,7 @@ internal final class StorageReducerTests: XCTestCase {
         
         let reducer = StorageReducer(
             storage: cache,
-            tranform: { storage in
+            transform: { storage in
                 
                 return Set(
                     storage.elements.map { $0.value }
