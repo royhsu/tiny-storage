@@ -12,6 +12,7 @@ import XCTest
 
 @testable import TinyStorage
 
+#warning("Update testing that follows IndexedStorage.")
 internal final class MemoryCacheTests: XCTestCase {
 
     internal final var observation: Observation?
@@ -20,11 +21,8 @@ internal final class MemoryCacheTests: XCTestCase {
 
         let cache = MemoryCache<String, String>()
 
-        XCTAssertEqual(
-            cache.count,
-            0
-        )
-
+        XCTAssert(cache.isEmpty)
+        
     }
 
     internal final func testExpressibleByDictionaryLiteral() {
@@ -86,7 +84,7 @@ internal final class MemoryCacheTests: XCTestCase {
 
         observation = cache.observe { change in
 
-            promise.fulfill()
+            defer { promise.fulfill() }
 
             let changes = change.currentValue
 
