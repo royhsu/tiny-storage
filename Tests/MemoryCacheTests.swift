@@ -22,7 +22,7 @@ internal final class MemoryCacheTests: XCTestCase {
         let cache = MemoryCache<String, String>()
 
         XCTAssert(cache.isEmpty)
-        
+
     }
 
     internal final func testExpressibleByDictionaryLiteral() {
