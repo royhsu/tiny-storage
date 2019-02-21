@@ -22,9 +22,9 @@
 		B0A26ECB2155EA2B00747535 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A26ECA2155EA2B00747535 /* Page.swift */; };
 		B0A26ECD2155EA4400747535 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A26ECC2155EA4400747535 /* Resource.swift */; };
 		B0A26ECF2155EAB000747535 /* FetchItemsPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A26ECE2155EAB000747535 /* FetchItemsPayload.swift */; };
+		B0C1395D221EB28300E9B292 /* TinyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0C1395C221EB28300E9B292 /* TinyCore.framework */; };
 		B0E8CF7F21556F050083F0DB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07825F021556E3D00F7CD56 /* Message.swift */; };
 		B0E8CF80215573130083F0DB /* RemoteStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07825E8215568EF00F7CD56 /* RemoteStorageTests.swift */; };
-		B0F51C9D215868D100B592F5 /* TinyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F51C9C215868D100B592F5 /* TinyCore.framework */; };
 		B0F51CA321586C4200B592F5 /* XCTUnwrapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F51CA021586C4200B592F5 /* XCTUnwrapped.swift */; };
 		B0F51CA421586C4200B592F5 /* XCTSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F51CA121586C4200B592F5 /* XCTSuccess.swift */; };
 /* End PBXBuildFile section */
@@ -60,6 +60,7 @@
 		B0A26ECA2155EA2B00747535 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		B0A26ECC2155EA4400747535 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		B0A26ECE2155EAB000747535 /* FetchItemsPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchItemsPayload.swift; sourceTree = "<group>"; };
+		B0C1395C221EB28300E9B292 /* TinyCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TinyCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E8CF812155D67E0083F0DB /* TinyStorage.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TinyStorage.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B0F51C9C215868D100B592F5 /* TinyCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TinyCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0F51CA021586C4200B592F5 /* XCTUnwrapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTUnwrapped.swift; sourceTree = "<group>"; };
@@ -71,7 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0F51C9D215868D100B592F5 /* TinyCore.framework in Frameworks */,
+				B0C1395D221EB28300E9B292 /* TinyCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +151,7 @@
 		B00B9EF621551A66006CAD5A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B0C1395C221EB28300E9B292 /* TinyCore.framework */,
 				B0F51C9C215868D100B592F5 /* TinyCore.framework */,
 			);
 			name = Frameworks;
