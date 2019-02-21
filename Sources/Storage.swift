@@ -7,6 +7,8 @@
 
 // MARK: - Storage
 
+import TinyCore
+
 public protocol Storage {
 
     associatedtype Key: Hashable

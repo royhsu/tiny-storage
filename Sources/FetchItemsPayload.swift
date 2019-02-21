@@ -7,6 +7,8 @@
 
 // MARK: - FetchItemsPayload
 
+import TinyCore
+
 public struct FetchItemsPayload<Item> where Item: Unique {
 
     public let items: [Item]

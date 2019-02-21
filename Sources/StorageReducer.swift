@@ -8,6 +8,8 @@
 
 // MARK: - StorageReducer
 
+import TinyCore
+
 public final class StorageReducer<T, U> where T: Storage {
 
     public final let storage: T

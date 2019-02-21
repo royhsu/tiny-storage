@@ -7,6 +7,8 @@
 
 // MARK: - RemoteStorage
 
+import TinyCore
+
 #warning("TODO: should consider to define FetchItemsRequest wrapping up the context including page.")
 public protocol Resource {
 
