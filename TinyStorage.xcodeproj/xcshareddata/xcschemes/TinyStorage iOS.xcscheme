@@ -7,20 +7,6 @@
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B00B9EDC21551792006CAD5A"
-               BuildableName = "TinyStorage.framework"
-               BlueprintName = "TinyStorage iOS"
-               ReferencedContainer = "container:TinyStorage.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
             buildForTesting = "NO"
             buildForRunning = "YES"
             buildForProfiling = "NO"
@@ -32,6 +18,20 @@
                BuildableName = "TinyCore.framework"
                BlueprintName = "TinyCore iOS"
                ReferencedContainer = "container:tiny-core/TinyCore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B00B9EDC21551792006CAD5A"
+               BuildableName = "TinyStorage.framework"
+               BlueprintName = "TinyStorage iOS"
+               ReferencedContainer = "container:TinyStorage.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
